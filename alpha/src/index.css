@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+
+
+/* Custom Aurora Background Animation */
+@keyframes aurora {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.aurora-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1400px;
+  height: 1400px;
+  background-image: conic-gradient(from 90deg at 50% 50%,
+      rgba(168, 85, 247, 0.4) 0%,
+      /* purple */
+      rgba(236, 72, 153, 0.4) 33%,
+      /* pink */
+      rgba(34, 197, 94, 0.2) 66%,
+      /* green */
+      rgba(168, 85, 247, 0.4) 100%
+      /* back to purple */
+    );
+  filter: blur(150px);
+  z-index: 0;
+  animation: aurora 20s linear infinite;
+}
+
+/* Custom scrollbar for a sleeker look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+  /* gray-900 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  /* indigo-600 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366f1;
+  /* indigo-500 */
+}
