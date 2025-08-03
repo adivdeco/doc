@@ -17,6 +17,52 @@
   }
 }
 
+@keyframes parallax {
+
+  0% {
+    backgroundPosition: '260px'
+  }
+
+  100% {
+    backgroundPosition: '-10000vw'
+  }
+
+}
+
+@keyframes moto {
+  0% {
+    transform: 'translateY(0) rotate(0)'
+  }
+
+  5% {
+    transform: 'translateY(0) rotate(-5deg)'
+  }
+
+  25% {
+    transform: 'translateY(60px) rotate(-20deg)'
+  }
+
+  49% {
+    transform: 'translateY(0) rotate(-1deg)'
+  }
+
+  51% {
+    transform: 'translateY(0) rotate(1deg)'
+  }
+
+  75% {
+    transform: 'translateY(60px) rotate(20deg)'
+  }
+
+  80% {
+    transform: 'translateY(60px) rotate(0)'
+  }
+
+  98% {
+    transform: 'translateY(0) rotate(0)'
+  }
+}
+
 .aurora-bg {
   position: absolute;
   top: 30%;
@@ -57,4 +103,21 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #6366f1;
   /* indigo-500 */
+}
+
+
+.custom-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(to right, transparent, currentColor, transparent);
+  transition: width 0.3s ease;
+}
+
+.custom-underline:hover::after {
+  width: 100%;
 }

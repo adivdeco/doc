@@ -1,436 +1,3 @@
-
-
-// import React, { useState, useEffect } from 'react';
-// import { motion, useScroll, useSpring } from 'framer-motion';
-// import {
-//     Code, Star, Film, Bot, Shield, BrainCircuit, Gamepad2, Users, HardDrive, ShoppingCart, UserCheck, MessageSquare, BookOpen, Activity,
-//     Rocket, Cpu, Database, Cloud, Globe, ArrowRight, ArrowUpRight,
-//     Languages,
-//     LayoutDashboard,
-//     HeartHandshake,
-//     MonitorPlay,
-//     NotebookIcon
-// } from 'lucide-react';
-// import {
-
-//     Brain, Code2, Layers, Video, TestTube, PencilRuler, MessagesSquare, CheckCircle, Component, Github, FileCode, Sparkles, Target, CodeXml
-// } from 'lucide-react';
-// import "../index.css"
-
-// // --- Motion Variants for Animations ---
-// const staggerContainer = {
-//     hidden: { opacity: 0 },
-//     show: {
-//         opacity: 1,
-//         transition: { staggerChildren: 0.15, delayChildren: 0.2 }
-//     }
-// };
-// const itemVariants = {
-//     hidden: { opacity: 0, y: 20 },
-//     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-// };
-
-// // --- Reusable Animated Sub-components ---
-
-// const Section = ({ id, title, icon, children }) => (
-//     <motion.section id={id} className="mb-24 relative" variants={itemVariants}>
-//         <div className="flex items-center mb-8 border-b-2 border-purple-800/50 pb-4">
-//             {React.cloneElement(icon, { className: "w-9 h-9 mr-4 text-purple-400" })}
-//             <h2 className="text-4xl font-bold tracking-tight text-white">{title}</h2>
-//         </div>
-//         <div className="text-gray-300 leading-relaxed text-lg">
-//             {children}
-//         </div>
-//     </motion.section>
-// );
-
-// const FeatureCard = ({ icon, title, children }) => (
-//     <motion.div
-//         className="bg-black/20 p-6 rounded-2xl border border-white/10 backdrop-blur-md hover:border-purple-500 hover:-translate-y-2 transition-all duration-300"
-//         variants={itemVariants}
-//     >
-//         <div className="flex items-center gap-4 mb-3">
-//             {React.cloneElement(icon, { className: "w-8 h-8 text-purple-400" })}
-//             <h3 className="text-xl font-semibold text-white">{title}</h3>
-//         </div>
-//         <p className="text-gray-400">{children}</p>
-//     </motion.div>
-// );
-
-// const TechPill = ({ icon, name, category }) => (
-//     <motion.div
-//         className="flex items-center gap-3 bg-gray-900/50 p-4 rounded-xl border border-gray-700 hover:bg-purple-900/40 hover:border-purple-700 group transition-all"
-//         variants={itemVariants}
-//         whileHover={{ scale: 1.05 }}
-//     >
-//         {React.cloneElement(icon, { className: "w-7 h-7 text-cyan-400 group-hover:text-cyan-300" })}
-//         <div>
-//             <p className="font-semibold text-white">{name}</p>
-//             <p className="text-xs text-gray-500">{category}</p>
-//         </div>
-//     </motion.div>
-// );
-
-// // --- Floating Navigation Component ---
-// const FloatingNav = ({ sections }) => {
-//     const [activeSection, setActiveSection] = useState('');
-
-//     useEffect(() => {
-//         const observer = new IntersectionObserver(
-//             (entries) => {
-//                 entries.forEach(entry => {
-//                     if (entry.isIntersecting) setActiveSection(entry.target.id);
-//                 });
-//             },
-//             { rootMargin: '-30% 0px -70% 0px' }
-//         );
-//         sections.forEach(sec => {
-//             const el = document.getElementById(sec.id);
-//             if (el) observer.observe(el);
-//         });
-//         return () => sections.forEach(sec => {
-//             const el = document.getElementById(sec.id);
-//             if (el) observer.unobserve(el);
-//         });
-//     }, [sections]);
-
-//     return (
-//         <nav className="hidden lg:block fixed left-8 top-1/2 -translate-y-1/2 z-50">
-//             <motion.ul
-//                 className="flex flex-col gap-2 bg-black/30 border border-white/10 rounded-full p-2 backdrop-blur-lg"
-//                 initial={{ x: -100, opacity: 0 }}
-//                 animate={{ x: 0, opacity: 1 }}
-//                 transition={{ duration: 0.8, delay: 1 }}
-//             >
-//                 {sections.map(sec => (
-//                     <li key={sec.id}>
-//                         <a href={`#${sec.id}`}
-//                             className={`relative flex items-center justify-center w-12 h-12 rounded-full group transition-all duration-300
-//                                        ${activeSection === sec.id ? 'bg-purple-600' : 'hover:bg-gray-700'}`}
-//                             aria-label={sec.title}
-//                         >
-//                             {React.cloneElement(sec.icon, { className: `w-6 h-6 transition-colors ${activeSection === sec.id ? 'text-white' : 'text-gray-400 group-hover:text-white'}` })}
-//                             <span className="absolute left-full ml-4 w-max px-3 py-1 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-//                                 {sec.title}
-//                             </span>
-//                         </a>
-//                     </li>
-//                 ))}
-//             </motion.ul>
-//         </nav>
-//     );
-// };
-
-// // --- Main Documentation Page ---
-// const DesignerDocumentationPage = () => {
-//     // For the progress bar at the top
-//     const { scrollYProgress } = useScroll();
-//     const scaleX = useSpring(scrollYProgress, {
-//         stiffness: 100,
-//         damping: 30,
-//         restDelta: 0.001
-//     });
-
-//     const navSections = [
-//         { id: "overview", title: "Overview", icon: <BookOpen /> },
-//         { id: "features", title: "Features", icon: <Star /> },
-//         { id: "ai-role", title: "Role of AI", icon: <BrainCircuit /> },
-//         { id: "tech-stack", title: "Tech Stack", icon: <Rocket /> },
-//         { id: "challenges", title: "Challenges", icon: <Shield /> }
-//     ];
-
-//     return (
-//         <div className="relative min-h-screen bg-gray-950 font-sans text-white isolate overflow-x-hidden">
-//             {/* Background Aurora */}
-//             <div className="aurora-bg" />
-
-//             {/* Top scroll progress bar */}
-//             <motion.div className="fixed top-0 left-0 right-0 h-1.5 bg-purple-600 z-50" style={{ scaleX, transformOrigin: '0%' }} />
-
-//             {/* Floating Sidebar Nav */}
-//             <FloatingNav sections={navSections} />
-
-//             <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24">
-//                 {/* --- Header Section --- */}
-//                 <header className="text-center mb-28">
-//                     <motion.div
-//                         initial={{ opacity: 0, scale: 0.8 }}
-//                         animate={{ opacity: 1, scale: 1 }}
-//                         transition={{ duration: 0.7, delay: 0.2 }}
-//                     >
-//                         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-400 to-pink-500">
-//                             CodeHunter Documentation
-//                         </h1>
-//                     </motion.div>
-//                     <motion.p
-//                         initial={{ opacity: 0, y: 20 }}
-//                         animate={{ opacity: 1, y: 0 }}
-//                         transition={{ duration: 0.7, delay: 0.4 }}
-//                         className="mt-6 max-w-3xl mx-auto text-xl text-gray-400"
-//                     >
-//                         An interactive deep-dive into the architecture, features, and technology powering the ultimate coding platform.
-//                     </motion.p>
-//                 </header>
-
-//                 <motion.div initial="hidden" animate="show" variants={staggerContainer}>
-//                     <Section id="overview" title="Project Overview" icon={<BookOpen />}>
-//                         <p>
-//                             CodeHunter is a powerful, all-in-one coding platform built for aspiring developers, competitive programmers, and students preparing for technical interviews. It offers an immersive environment to solve coding problems, track progress, write notes, chat with AI, and submit solutions in multiple languages — all in a sleek..
-//                         </p>
-//                     </Section>
-
-//                     <Section id="features" title="Features In Detail" icon={<Star />}>
-//                         <h3 className="text-2xl font-semibold mb-6 text-purple-300">👩‍💻 User-Facing Features</h3>
-//                         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" variants={staggerContainer}>
-//                             <FeatureCard icon={<Code />} title="Company-Focused Problems">Tackle curated questions from FAANG+ interviews.</FeatureCard>
-//                             <FeatureCard icon={<Film />} title="Detailed Video Solutions">In-depth video walkthroughs for complex problems.</FeatureCard>
-//                             {/* ... Add all other feature cards ... */}
-//                             <FeatureCard icon={<Users />} title="Community & Discussion">Engage in global chat and problem-specific forums.</FeatureCard>
-//                             <FeatureCard icon={<ShoppingCart />} title="Avatar & Shop">Customize profiles and redeem points for merch.</FeatureCard>
-//                             <FeatureCard icon={<Bot />} title="AI Assistant">Stuck in problem don't worry get full concept at one place.</FeatureCard>
-//                             <FeatureCard icon={<Languages />} title="C++ , Java , Python , JavaScript , Go">All Dominating Language support. </FeatureCard>
-//                             <FeatureCard icon={<LayoutDashboard />} title="Dashbord">Detailed dashbord to annnalize your growth, </FeatureCard>
-//                             <FeatureCard icon={<CheckCircle />} title="Daily Challanges ">Daily Challange Problems </FeatureCard>
-//                             <FeatureCard icon={< HeartHandshake />} title="24*7 support ">Intigrated help center </FeatureCard >
-//                             <FeatureCard icon={< NotebookIcon />} title="Note & Bookmark"> Sepreat Notea for all problem </FeatureCard >
-//                             <FeatureCard icon={< MonitorPlay />} title="Many-More ">EndlessFeature </FeatureCard >
-
-
-//                         </motion.div>
-
-//                         <h3 className="text-2xl font-semibold mb-6 text-purple-300">👑 Admin-Facing Features</h3>
-//                         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" variants={staggerContainer}>
-//                             {/* ... Add admin feature cards ... */}
-//                             <FeatureCard icon={<UserCheck />} title="User Management">View, update roles, or disable user accounts.</FeatureCard>
-//                             <FeatureCard icon={<Activity />} title="Platform Analytics">Visual dashboard with key metrics for data-driven decisions.</FeatureCard>
-//                             <FeatureCard icon={<Video />} title="Video-Intrigation">Proper Comment on making ease in every step</FeatureCard>
-//                             <FeatureCard icon={<Activity />} title="Problem creation">Probleam creation</FeatureCard>
-//                             <FeatureCard icon={<Activity />} title="Deleat problem">All jut in one click</FeatureCard>
-//                             <FeatureCard icon={<Activity />} title="Update">Have an errror dont worry , update problem as esy as cup of tea</FeatureCard>
-
-//                         </motion.div>
-
-//                     </Section>
-
-//                     {/* --- The Role of AI Section (Enhanced) --- */}
-//                     <Section id="ai-role" title="The Role of AI: Your Personal Mentor" icon={<BrainCircuit />}>
-//                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-//                             {/* Left Column: Descriptive Text */}
-//                             <motion.div
-//                                 className="space-y-6"
-//                                 initial={{ opacity: 0, x: -50 }}
-//                                 whileInView={{ opacity: 1, x: 0 }}
-//                                 viewport={{ once: true, amount: 0.3 }}
-//                                 transition={{ duration: 0.8 }}
-//                             >
-//                                 <p className="text-xl text-gray-300">
-//                                     At CodeHunter, Artificial Intelligence is more than a feature; it's a core pillar of our educational philosophy. We've integrated a sophisticated AI that acts as your personal **Socratic tutor**, designed to guide you towards the solution, not just hand it to you.
-//                                 </p>
-//                                 <p className="text-gray-400">
-//                                     When you're stuck on a problem, our AI is engineered to help you build true understanding and problem-solving intuition. Its goal is to empower you with confidence for real-world interviews.
-//                                 </p>
-
-//                                 <ul className="space-y-4 pt-4 border-t border-gray-800">
-//                                     <li className="flex items-center gap-4">
-//                                         <div className="bg-purple-900/50 p-2 rounded-full border border-purple-700">
-//                                             <Target className="w-5 h-5 text-purple-300" />
-//                                         </div>
-//                                         <span>
-//                                             <strong className="text-white">Illuminates Core Concepts:</strong> Guides you through the fundamental logic and data structures behind each problem.
-//                                         </span>
-//                                     </li>
-//                                     <li className="flex items-center gap-4">
-//                                         <div className="bg-purple-900/50 p-2 rounded-full border border-purple-700">
-//                                             <Sparkles className="w-5 h-5 text-purple-300" />
-//                                         </div>
-//                                         <span>
-//                                             <strong className="text-white">Provides On-Demand Hints:</strong> Offers nudges in the right direction without spoiling the solution.
-//                                         </span>
-//                                     </li>
-//                                     <li className="flex items-center gap-4">
-//                                         <div className="bg-purple-900/50 p-2 rounded-full border border-purple-700">
-//                                             <CodeXml className="w-5 h-5 text-purple-300" />
-//                                         </div>
-//                                         <span>
-//                                             <strong className="text-white">Demystifies Complex Code:</strong> Explains what any selected snippet of code does in plain, easy-to-understand English.
-//                                         </span>
-//                                     </li>
-//                                 </ul>
-//                             </motion.div>
-
-//                             {/* Right Column: Visual AI Demo Card */}
-//                             <motion.div
-//                                 className="bg-black/20 p-6 rounded-2xl border border-white/10 backdrop-blur-lg relative overflow-hidden"
-//                                 initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
-//                                 whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-//                                 viewport={{ once: true, amount: 0.5 }}
-//                                 transition={{ duration: 0.8, type: 'spring' }}
-//                             >
-//                                 {/* Gradient Glow */}
-//                                 <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-bl from-pink-500/50 to-purple-600/50 rounded-full blur-3xl opacity-50"></div>
-
-//                                 <div className="relative z-10">
-//                                     <h4 className="font-semibold text-lg mb-4">AI Assistant</h4>
-
-//                                     {/* User Prompt */}
-//                                     <div className="mb-4">
-//                                         <p className="text-sm text-gray-500 mb-1 text-right">You</p>
-//                                         <div className="bg-blue-600/70 p-3 rounded-lg rounded-br-none ml-auto max-w-sm">
-//                                             <p className="text-white">I'm stuck. Can you explain the core concept needed for this problem without giving away the code?</p>
-//                                         </div>
-//                                     </div>
-
-//                                     {/* AI Response with Typing Animation */}
-//                                     <div>
-//                                         <p className="text-sm text-gray-500 mb-1">CodeHunter AI</p>
-//                                         <div className="bg-gray-800/80 p-3 rounded-lg rounded-bl-none mr-auto max-w-sm">
-//                                             <div className="flex items-center gap-1.5">
-//                                                 <motion.span
-//                                                     className="w-2 h-2 bg-purple-400 rounded-full"
-//                                                     animate={{ y: [0, -4, 0] }}
-//                                                     transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-//                                                 />
-//                                                 <motion.span
-//                                                     className="w-2 h-2 bg-purple-400 rounded-full"
-//                                                     animate={{ y: [0, -4, 0] }}
-//                                                     transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-//                                                 />
-//                                                 <motion.span
-//                                                     className="w-2 h-2 bg-purple-400 rounded-full"
-//                                                     animate={{ y: [0, -4, 0] }}
-//                                                     transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-//                                                 />
-//                                             </div>
-//                                             <p className="text-gray-300 mt-2 text-sm italic">
-//                                                 Certainly! Think about using a Two-Pointer technique. How could two pointers, one at the start and one at the end, help you efficiently find your target?
-//                                             </p>
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             </motion.div>
-
-//                         </div>
-//                     </Section>
-
-//                     {/* --- Tech Stack Section with Unique Icons --- */}
-//                     <Section id="tech-stack" title="Technology Stack" icon={<Rocket />}>
-//                         <motion.div
-//                             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
-//                             variants={staggerContainer}
-//                         >
-//                             {/* Frontend */}
-//                             <TechPill
-//                                 icon={<Code2 />}
-//                                 name="React & Vite"
-//                                 category="Frontend Framework & Tooling"
-//                                 href="https://react.dev/"
-//                             />
-//                             <TechPill
-//                                 icon={<Component />}
-//                                 name="Lucide React"
-//                                 category="Icon Library"
-//                                 href="https://lucide.dev/"
-//                             />
-//                             <TechPill
-//                                 icon={<Brain />}
-//                                 name="Redux Toolkit"
-//                                 category="State Management"
-//                                 href="https://redux-toolkit.js.org/"
-//                             />
-//                             <TechPill
-//                                 icon={<FileCode />}
-//                                 name="Monaco Editor"
-//                                 category="Code Editor Component"
-//                                 href="https://microsoft.github.io/monaco-editor/"
-//                             />
-
-//                             {/* Backend */}
-//                             <TechPill
-//                                 icon={<Cpu />}
-//                                 name="Node & Express"
-//                                 category="Backend Runtime & Framework"
-//                                 href="https://expressjs.com/"
-//                             />
-//                             <TechPill
-//                                 icon={<Database />}
-//                                 name="MongoDB"
-//                                 category="NoSQL Database"
-//                                 href="https://www.mongodb.com/"
-//                             />
-//                             <TechPill
-//                                 icon={<MessagesSquare />}
-//                                 name="Socket.IO"
-//                                 category="Real-time Communication"
-//                                 href="https://socket.io/"
-//                             />
-
-//                             {/* Services & APIs */}
-//                             <TechPill
-//                                 icon={<Video />}
-//                                 name="Cloudinary"
-//                                 category="Video & Image Storage"
-//                                 href="https://cloudinary.com/"
-//                             />
-//                             <TechPill
-//                                 icon={<CheckCircle />}
-//                                 name="Judge0"
-//                                 category="Code Execution & Validation"
-//                                 href="https://judge0.com/"
-//                             />
-//                             <TechPill
-//                                 icon={<Bot />}
-//                                 name="OpenAI API"
-//                                 category="AI-Powered Assistance"
-//                                 href="https://openai.com/"
-//                             />
-
-//                             {/* DevOps */}
-//                             <TechPill
-//                                 icon={<Globe />}
-//                                 name="Vercel & Render"
-//                                 category="Deployment & Hosting"
-//                                 href="https://vercel.com/"
-//                             />
-//                             <TechPill
-//                                 icon={<Github />}
-//                                 name="GitHub"
-//                                 category="Version Control & CI/CD"
-//                                 href="https://github.com/"
-//                             />
-
-//                         </motion.div>
-//                     </Section>
-
-//                     <Section id="challenges" title="Challenges & Solutions" icon={<Shield />}>
-//                         <motion.ul className="space-y-6" variants={staggerContainer}>
-//                             <motion.li variants={itemVariants} className="bg-black/20 p-6 rounded-xl border border-white/10">
-//                                 <strong className="text-pink-400 text-lg">Real-time Scalability</strong><br />
-//                                 <span className="text-gray-400"><strong>Solution:</strong> Used Socket.IO with Redis Adapter for multi-instance state sync and isolated rooms to manage load.</span>
-//                             </motion.li>
-//                             <motion.li variants={itemVariants} className="bg-black/20 p-6 rounded-xl border border-white/10">
-//                                 <strong className="text-pink-400 text-lg">Secure & Efficient File Uploads</strong><br />
-//                                 <span className="text-gray-400"><strong>Solution:</strong> Offloaded storage to Cloudinary. Implemented a robust `multer` flow on the backend for pre-processing.</span>
-//                             </motion.li>
-//                             <motion.li variants={itemVariants} className="bg-black/20 p-6 rounded-xl border border-white/10">
-//                                 <strong className="text-pink-400 text-lg">Frontend-Desine</strong><br />
-//                                 <span className="text-gray-400"><strong>Solution:</strong> Use of Libraryse like MagicUI & shadeCN, FIRST TIME make using doc only is loat hard.. but by help of online pratform like utube help alot  </span>
-//                             </motion.li>
-//                             <motion.li variants={itemVariants} className="bg-black/20 p-6 rounded-xl border border-white/10">
-//                                 <strong className="text-pink-400 text-lg">Google & other Media login featur</strong><br />
-//                                 <span className="text-gray-400"><strong>Solution:</strong> it not easy for a buigner to handle all with doc only , thanks for AI to help me alot</span>
-//                             </motion.li>
-
-//                         </motion.ul>
-//                     </Section>
-//                 </motion.div>
-//             </main>
-//         </div>
-//     );
-// };
-
-// export default DesignerDocumentationPage;
-
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import {
@@ -442,12 +9,15 @@ import {
     MonitorPlay,
     NotebookIcon,
     ChevronDown,
-    ChevronUp
+    ChevronUp,
+    Route
 } from 'lucide-react';
 import {
-    Brain, Code2, Layers, Video, TestTube, PencilRuler, MessagesSquare, CheckCircle, Component, Github, FileCode, Sparkles, Target, CodeXml
+    Brain, Bookmark, Code2, Layers, Video, TestTube, PencilRuler, MessagesSquare, CheckCircle, Component, Github, FileCode, Sparkles, Target, CodeXml
 } from 'lucide-react';
 import "../index.css"
+import Footer from './footer';
+
 
 // --- Motion Variants for Animations ---
 const staggerContainer = {
@@ -669,7 +239,7 @@ const DesignerDocumentationPage = () => {
             {/* Floating Sidebar Nav */}
             <FloatingNav sections={navSections} />
 
-            <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 max-w-7xl">
+            <main className="relative z-10 mb-[40vh] container mx-auto px-4 sm:px-6 lg:px-8 py-24 max-w-7xl">
                 {/* --- Header Section --- */}
                 <header className="text-center mb-28">
                     <motion.div
@@ -1227,10 +797,417 @@ const DesignerDocumentationPage = () => {
                             </motion.div>
                         </div>
                     </Section>
+
+
+                    {/* backend routs defination */}
+                    <Section id="backend-architecture" title="Backend Architecture" icon={<Code2 />}>
+                        <div className="space-y-8">
+                            <div className="prose prose-invert max-w-none">
+                                <h3 className="text-2xl font-bold text-white mb-4">Server Structure Overview</h3>
+                                <p className="text-lg text-gray-300">
+                                    Our backend is built with Node.js and Express, following RESTful principles with modular route organization.
+                                    The architecture is designed for scalability, security, and maintainability.
+                                </p>
+
+                                <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                        <h4 className="text-purple-300 font-semibold mb-2">Core Modules</h4>
+                                        <ul className="text-sm text-gray-400 space-y-1">
+                                            <li>Express.js Framework</li>
+                                            <li>MongoDB with Mongoose</li>
+                                            <li>Redis for caching</li>
+                                            <li>Socket.IO for real-time</li>
+                                        </ul>
+                                    </div>
+                                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                        <h4 className="text-purple-300 font-semibold mb-2">Key Features</h4>
+                                        <ul className="text-sm text-gray-400 space-y-1">
+                                            <li>JWT Authentication</li>
+                                            <li>Role-based Access Control</li>
+                                            <li>Rate Limiting</li>
+                                            <li>Centralized Error Handling</li>
+                                        </ul>
+                                    </div>
+                                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                        <h4 className="text-purple-300 font-semibold mb-2">Directory Structure</h4>
+                                        <ul className="text-sm text-gray-400 space-y-1">
+                                            <li>routes/ - All endpoint definitions</li>
+                                            <li>controllers/ - Business logic</li>
+                                            <li>models/ - Database schemas</li>
+                                            <li>middleware/ - Auth and validation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <motion.div className="space-y-6" variants={staggerContainer}>
+                                {/* Authentication Routes */}
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-red-500/20 p-3 rounded-lg border border-red-500/30">
+                                            <Shield className="w-6 h-6 text-red-400" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-xl font-semibold text-white mb-2">Authentication Routes</h3>
+                                            <p className="text-gray-400 mb-4">
+                                                Secure user authentication system with JWT, role management, and Redis-based rate limiting.
+                                            </p>
+
+                                            <div className="space-y-4">
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-purple-300 mb-2">Base Path: <code>/auth</code></h4>
+                                                    <div className="overflow-x-auto">
+                                                        <table className="w-full text-sm text-gray-400">
+                                                            <thead className="text-xs text-purple-300 border-b border-gray-700">
+                                                                <tr>
+                                                                    <th className="py-2">Method</th>
+                                                                    <th className="py-2">Endpoint</th>
+                                                                    <th className="py-2">Description</th>
+                                                                    <th className="py-2">Middleware</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody className="divide-y divide-gray-700">
+                                                                <tr>
+                                                                    <td className="py-2 text-yellow-400 font-mono">POST</td>
+                                                                    <td className="py-2 font-mono">/register</td>
+                                                                    <td className="py-2">User registration with email validation</td>
+                                                                    <td className="py-2">None</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 text-yellow-400 font-mono">POST</td>
+                                                                    <td className="py-2  font-mono">/login</td>
+                                                                    <td className="py-2">User login with JWT issuance</td>
+                                                                    <td className="py-2">None</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 text-yellow-400 font-mono">POST</td>
+                                                                    <td className="py-2 font-mono">/logout</td>
+                                                                    <td className="py-2">Token invalidation</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-green-400 ">Get</td>
+                                                                    <td className="py-2 font-mono">/check</td>
+                                                                    <td className="py-2">Validate current session</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-orange-400 ">PATCH</td>
+                                                                    <td className="py-2 font-mono">/profile</td>
+                                                                    <td className="py-2">Update user profile</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-red-400 ">DELETE</td>
+                                                                    <td className="py-2 font-mono">/profile</td>
+                                                                    <td className="py-2">Self-delete account</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 text-yellow-400 font-mono">POST</td>
+                                                                    <td className="py-2 font-mono">/admin/register</td>
+                                                                    <td className="py-2">Admin user creation</td>
+                                                                    <td className="py-2">adminMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-green-400 ">Get</td>
+                                                                    <td className="py-2 font-mono">/alluser</td>
+                                                                    <td className="py-2">List all users (admin)</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-purple-300 mb-2">Key Features</h4>
+                                                    <ul className="space-y-2 text-sm text-gray-400">
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-purple-300">•</span>
+                                                            <span>Password hashing with bcrypt</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-purple-300">•</span>
+                                                            <span>JWT with refresh token rotation</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-purple-300">•</span>
+                                                            <span>Redis-based session management</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-purple-300">•</span>
+                                                            <span>Role-based access control (RBAC)</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Problem Management Routes */}
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-blue-500/20 p-3 rounded-lg border border-blue-500/30">
+                                            <BookOpen className="w-6 h-6 text-blue-400" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-xl font-semibold text-white mb-2">Problem Management</h3>
+                                            <p className="text-gray-400 mb-4">
+                                                Coding problem creation, submission, and tracking system with user progress monitoring.
+                                            </p>
+
+                                            <div className="space-y-4">
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-purple-300 mb-2">Base Path: <code>/problem</code></h4>
+                                                    <div className="overflow-x-auto">
+                                                        <table className="w-full text-sm text-gray-400">
+                                                            <thead className="text-xs text-purple-300 border-b border-gray-700">
+                                                                <tr>
+                                                                    <th className="py-2">Method</th>
+                                                                    <th className="py-2">Endpoint</th>
+                                                                    <th className="py-2">Description</th>
+                                                                    <th className="py-2">Middleware</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody className="divide-y divide-gray-700">
+                                                                <tr>
+                                                                    <td className="py-2 text-yellow-400 font-mono">POST</td>
+                                                                    <td className="py-2 font-mono">/create</td>
+                                                                    <td className="py-2">Create new coding problem</td>
+                                                                    <td className="py-2">adminMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-yellow-600">PUT</td>
+                                                                    <td className="py-2 font-mono">/update/:id</td>
+                                                                    <td className="py-2">Update existing problem</td>
+                                                                    <td className="py-2">adminMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-red-400 ">DELETE</td>
+                                                                    <td className="py-2 font-mono">/delete/:id</td>
+                                                                    <td className="py-2 text-red-400 ">DELETE problem</td>
+                                                                    <td className="py-2">adminMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-green-400 ">Get</td>
+                                                                    <td className="py-2 font-mono">/find/:id</td>
+                                                                    <td className="py-2 text-green-400 ">Get problem details</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-green-400 ">Get</td>
+                                                                    <td className="py-2 font-mono">/allProblems</td>
+                                                                    <td className="py-2">List all problems</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-green-400 ">Get</td>
+                                                                    <td className="py-2 font-mono">/allsolve</td>
+                                                                    <td className="py-2 text-green-400 ">Get user's solved problems</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-purple-300 mb-2">Related Routes</h4>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                        <div>
+                                                            <h5 className="text-xs text-blue-300 mb-1">Submission System: <code>/submit</code></h5>
+                                                            <ul className="text-xs text-gray-400 space-y-1">
+                                                                <li className="flex items-start gap-1">
+                                                                    <span className="text-yellow-400">POST</span>
+                                                                    <span>/submit/:id - Submit solution</span>
+                                                                </li>
+                                                                <li className="flex items-start gap-1">
+                                                                    <span className="text-yellow-400">POST</span>
+                                                                    <span>/run/:id - Test solution</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <h5 className="text-xs text-blue-300 mb-1">Discussion: <code>/api/discussion</code></h5>
+                                                            <ul className="text-xs text-gray-400 space-y-1">
+                                                                <li className="flex items-start gap-1">
+                                                                    <span className="text-blue-300 text-green-400 ">Get</span>
+                                                                    <span>/getcom/:problemId - Get comments</span>
+                                                                </li>
+                                                                <li className="flex items-start gap-1">
+                                                                    <span className="text-yellow-400">POST</span>
+                                                                    <span>/postcom/:problemId - Add comment</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Learning Resources Routes */}
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-green-500/20 p-3 rounded-lg border border-green-500/30">
+                                            <Bookmark className="w-6 h-6 text-green-400" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-xl font-semibold text-white mb-2">Learning Resources</h3>
+                                            <p className="text-gray-400 mb-4">
+                                                System for managing user-generated learning materials and video solutions.
+                                            </p>
+
+                                            <div className="space-y-4">
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-purple-300 mb-2">Base Path: <code>/note</code></h4>
+                                                    <div className="overflow-x-auto">
+                                                        <table className="w-full text-sm text-gray-400">
+                                                            <thead className="text-xs text-purple-300 border-b border-gray-700">
+                                                                <tr>
+                                                                    <th className="py-2">Method</th>
+                                                                    <th className="py-2">Endpoint</th>
+                                                                    <th className="py-2">Description</th>
+                                                                    <th className="py-2">Middleware</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody className="divide-y divide-gray-700">
+                                                                <tr>
+                                                                    <td className="py-2 text-yellow-400 font-mono">POST</td>
+                                                                    <td className="py-2 font-mono">/createnote/:id</td>
+                                                                    <td className="py-2">Create problem note</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-green-400 ">Get</td>
+                                                                    <td className="py-2 font-mono">/getnote/:id</td>
+                                                                    <td className="py-2 text-green-400 ">Get specific note</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="py-2 font-mono text-green-400 ">Get</td>
+                                                                    <td className="py-2 font-mono">/allnotes</td>
+                                                                    <td className="py-2">List all user notes</td>
+                                                                    <td className="py-2">userMiddleware</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                        <h4 className="text-sm font-semibold text-purple-300 mb-2">Bookmarks: <code>/book</code></h4>
+                                                        <ul className="text-sm text-gray-400 space-y-2">
+                                                            <li className="flex items-start gap-2">
+                                                                <span className="text-yellow-400 font-mono">POST</span>
+                                                                <span>/createmark/:id - Bookmark problem</span>
+                                                            </li>
+                                                            <li className="flex items-start gap-2">
+                                                                <span className="text-green-400 font-mono text-green-400 ">Get</span>
+                                                                <span>/getmark - List bookmarks</span>
+                                                            </li>
+                                                            <li className="flex items-start gap-2">
+                                                                <span className="text-red-400 font-mono text-red-400 ">DELETE</span>
+                                                                <span>/delmark/:id - Remove bookmark</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                        <h4 className="text-sm font-semibold text-purple-300 mb-2">Video Solutions: <code>/video</code></h4>
+                                                        <ul className="text-sm text-gray-400 space-y-2">
+                                                            <li className="flex items-start gap-2">
+                                                                <span className="text-green-400 font-mono text-green-400 ">Get</span>
+                                                                <span>/problem/:problemId - Get videos</span>
+                                                            </li>
+                                                            <li className="flex items-start gap-2">
+                                                                <span className="text-yellow-400 font-mono">POST</span>
+                                                                <span>/upload/:problemId - Upload video</span>
+                                                            </li>
+                                                            <li className="flex items-start gap-2">
+                                                                <span className="text-yellow-400 font-mono">POST</span>
+                                                                <span>/track/:videoId - Track view</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* AI Assistance Routes */}
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-purple-500/20 p-3 rounded-lg border border-purple-500/30">
+                                            <BrainCircuit className="w-6 h-6 text-purple-400" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-xl font-semibold text-white mb-2">AI Assistance</h3>
+                                            <p className="text-gray-400 mb-4">
+                                                Intelligent problem-solving assistant with context-aware responses and learning tracking.
+                                            </p>
+
+                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Base Path: <code>/ai</code></h4>
+                                                <div className="overflow-x-auto">
+                                                    <table className="w-full text-sm text-gray-400">
+                                                        <thead className="text-xs text-purple-300 border-b border-gray-700">
+                                                            <tr>
+                                                                <th className="py-2">Method</th>
+                                                                <th className="py-2">Endpoint</th>
+                                                                <th className="py-2">Description</th>
+                                                                <th className="py-2">Middleware</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td className="py-2 text-yellow-400 font-mono">POST</td>
+                                                                <td className="py-2 font-mono">/chat</td>
+                                                                <td className="py-2">AI-powered problem solving</td>
+                                                                <td className="py-2">userMiddleware</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-4 bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Technical Implementation</h4>
+                                                <ul className="space-y-2 text-sm text-gray-400">
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Conversation context maintained with vector embeddings</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Rate limiting to prevent API abuse</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Problem-specific prompt engineering</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>User learning progress integration</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        </div>
+                    </Section>
+
                 </motion.div>
 
                 {/* Footer */}
-                <footer className="mt-32 pt-12 border-t border-gray-800/50 text-center">
+                {/* <footer className="mt-32 pt-12 border-t border-gray-800/50 text-center">
                     <div className="mb-8">
                         <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 mb-4">
                             Ready to Transform Your Coding Journey?
@@ -1260,8 +1237,10 @@ const DesignerDocumentationPage = () => {
                     <p className="text-gray-500 text-sm">
                         © {new Date().getFullYear()} CodeHunter. All rights reserved.
                     </p>
-                </footer>
+                </footer> */}
+
             </main>
+            <Footer />
         </div>
     );
 };
