@@ -10,8 +10,18 @@ import {
     NotebookIcon,
     ChevronDown,
     ChevronUp,
-    Route
+    Route,
+    Filter
 } from 'lucide-react';
+import {
+    // Filter,
+    // Database,
+    Network,
+    AlertTriangle,
+    Zap,
+    // ArrowRight
+} from 'lucide-react';
+
 import {
     Brain, Bookmark, Code2, Layers, Video, TestTube, PencilRuler, MessagesSquare, CheckCircle, Component, Github, FileCode, Sparkles, Target, CodeXml
 } from 'lucide-react';
@@ -672,132 +682,6 @@ const DesignerDocumentationPage = () => {
                         </div>
                     </Section>
 
-                    <Section id="challenges" title="Engineering Challenges & Solutions" icon={<Shield />}>
-                        <div className="space-y-8">
-                            <div className="prose prose-invert max-w-none">
-                                <p className="text-lg text-gray-300">
-                                    Building a platform as complex as CodeHunter presented numerous technical challenges. Here's how our engineering team addressed the most critical ones:
-                                </p>
-                            </div>
-
-                            <motion.div className="space-y-6" variants={staggerContainer}>
-                                <motion.div
-                                    variants={itemVariants}
-                                    className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <div className="bg-red-500/20 p-3 rounded-lg border border-red-500/30">
-                                            <Shield className="w-6 h-6 text-red-400" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-semibold text-white mb-2">Secure Code Execution</h3>
-                                            <p className="text-gray-400 mb-3">
-                                                Running untrusted user code in a safe, isolated environment while maintaining performance.
-                                            </p>
-                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
-                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Solution Architecture</h4>
-                                                <ul className="space-y-2 text-sm text-gray-400">
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Implemented Judge0 as execution engine with strict resource limits</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Docker containers with read-only filesystems for each execution</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Network isolation to prevent external calls</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Timeout enforcement (5s max execution time)</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
-
-                                <motion.div
-                                    variants={itemVariants}
-                                    className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <div className="bg-blue-500/20 p-3 rounded-lg border border-blue-500/30">
-                                            <Users className="w-6 h-6 text-blue-400" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-semibold text-white mb-2">Real-time Collaboration</h3>
-                                            <p className="text-gray-400 mb-3">
-                                                Supporting concurrent users in coding rooms with live updates and synchronization.
-                                            </p>
-                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
-                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Implementation Strategy</h4>
-                                                <ul className="space-y-2 text-sm text-gray-400">
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Socket.IO with Redis adapter for horizontal scaling</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Operational transform for conflict resolution in code edits</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Throttled updates (100ms debounce) to prevent flooding</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Client-side prediction for smooth UI updates</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
-
-                                <motion.div
-                                    variants={itemVariants}
-                                    className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm"
-                                >
-                                    <div className="flex items-start gap-4">
-                                        <div className="bg-green-500/20 p-3 rounded-lg border border-green-500/30">
-                                            <BrainCircuit className="w-6 h-6 text-green-400" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-semibold text-white mb-2">AI Context Management</h3>
-                                            <p className="text-gray-400 mb-3">
-                                                Maintaining conversation context across multiple problems and coding sessions.
-                                            </p>
-                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
-                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Technical Approach</h4>
-                                                <ul className="space-y-2 text-sm text-gray-400">
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Vector embeddings of problem statements for semantic search</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Conversation trees stored in MongoDB with TTL indexes</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Custom prompt engineering to maintain teaching methodology</span>
-                                                    </li>
-                                                    <li className="flex items-start gap-2">
-                                                        <span className="text-purple-300">•</span>
-                                                        <span>Rate limiting to prevent API abuse</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            </motion.div>
-                        </div>
-                    </Section>
-
 
                     {/* backend routs defination */}
                     <Section id="backend-architecture" title="Backend Architecture" icon={<Code2 />}>
@@ -1033,7 +917,7 @@ const DesignerDocumentationPage = () => {
                                                             <h5 className="text-xs text-blue-300 mb-1">Discussion: <code>/api/discussion</code></h5>
                                                             <ul className="text-xs text-gray-400 space-y-1">
                                                                 <li className="flex items-start gap-1">
-                                                                    <span className="text-blue-300 text-green-400 ">Get</span>
+                                                                    <span className="text-green-400 ">Get</span>
                                                                     <span>/getcom/:problemId - Get comments</span>
                                                                 </li>
                                                                 <li className="flex items-start gap-1">
@@ -1200,44 +1084,526 @@ const DesignerDocumentationPage = () => {
                                         </div>
                                     </div>
                                 </motion.div>
+
+                                {/* middleware */}
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-orange-500/20 p-3 rounded-lg border border-orange-500/30">
+                                            <Filter className="w-6 h-6 text-orange-400" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-white mb-2">Middleware Layer</h3>
+                                            <p className="text-gray-400 mb-3">
+                                                Our middleware stack handles authentication, rate limiting, and request processing.
+                                            </p>
+
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-blue-300 mb-2">userMiddleware.js</h4>
+                                                    <ul className="space-y-2 text-sm text-gray-400">
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-blue-300">•</span>
+                                                            <span>JWT verification</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-blue-300">•</span>
+                                                            <span>Attaches user to request object</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-blue-300">•</span>
+                                                            <span>Session validation</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-purple-300 mb-2">rateLimiter.js</h4>
+                                                    <ul className="space-y-2 text-sm text-gray-400">
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-purple-300">•</span>
+                                                            <span>Redis-backed rate limiting</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-purple-300">•</span>
+                                                            <span>IP-based throttling</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-purple-300">•</span>
+                                                            <span>Dynamic rules per endpoint</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* db */}
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-emerald-500/20 p-3 rounded-lg border border-emerald-500/30">
+                                            <Database className="w-6 h-6 text-emerald-400" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-xl font-semibold text-white mb-2">Database Architecture</h3>
+
+                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+                                                {/* Problem Schema */}
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-emerald-300 mb-2">Problem Schema</h4>
+                                                    <div className="text-xs text-gray-400 space-y-3">
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">title:</span> String (required)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">difficulty:</span> Enum ['easy', 'medium', 'hard']
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">tags:</span> Enum ['array', 'string', ...]
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">companies:</span> Array [Google, Amazon...]
+                                                        </div>
+                                                        <div className="ml-4 border-l border-gray-700 pl-2">
+                                                            <span className="font-mono text-amber-300">visibleTestCases:</span> [
+                                                            <div className="ml-4">
+                                                                <span className="font-mono text-blue-300">input:</span> String<br />
+                                                                <span className="font-mono text-blue-300">output:</span> String<br />
+                                                                <span className="font-mono text-blue-300">explanation:</span> String
+                                                            </div>
+                                                            ]
+                                                        </div>
+                                                        <div className="ml-4 border-l border-gray-700 pl-2">
+                                                            <span className="font-mono text-amber-300">referenceSolution:</span> [
+                                                            <div className="ml-4">
+                                                                <span className="font-mono text-blue-300">language:</span> String<br />
+                                                                <span className="font-mono text-blue-300">completeCode:</span> String
+                                                            </div>
+                                                            ]
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Solution Schema */}
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-amber-300 mb-2">Solution Schema</h4>
+                                                    <div className="text-xs text-gray-400 space-y-3">
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">problemId:</span> ObjectId (ref: problemdata)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">userId:</span> ObjectId (ref: user)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">status:</span> Enum ['pending', 'accepted', ...]
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">runtime:</span> Number (ms)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">memory:</span> Number (MB)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">testCasesPassed:</span> Number
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Comment Schema */}
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-blue-300 mb-2">Comment Schema</h4>
+                                                    <div className="text-xs text-gray-400 space-y-3">
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">content:</span> String (max 2000)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">user:</span> ObjectId (ref: userdata)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">parentComment:</span> ObjectId (self-ref)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">likes:</span> [ObjectId] (ref: userdata)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">isPinned:</span> Boolean
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Video Solution Schema */}
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-rose-300 mb-2">Video Solution</h4>
+                                                    <div className="text-xs text-gray-400 space-y-3">
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">secureUrl:</span> String (Cloudinary)
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">duration:</span> String
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">views:</span> Number
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">solutionType:</span> Enum ['video', 'image', ...]
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-mono text-purple-300">reports:</span> [
+                                                            <div className="ml-4">
+                                                                <span className="font-mono text-blue-300">reason:</span> Enum ['spam', ...]<br />
+                                                                <span className="font-mono text-blue-300">comment:</span> String
+                                                            </div>
+                                                            ]
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Relationships Section */}
+                                            <div className="mt-4 bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Database Relationships</h4>
+                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-gray-400">
+                                                    <div className="flex items-start gap-2">
+                                                        <ArrowRight className="w-4 h-4 text-emerald-300 mt-0.5" />
+                                                        <span>User → Problems (1:N)</span>
+                                                    </div>
+                                                    <div className="flex items-start gap-2">
+                                                        <ArrowRight className="w-4 h-4 text-amber-300 mt-0.5" />
+                                                        <span>Problem → Solutions (1:N)</span>
+                                                    </div>
+                                                    <div className="flex items-start gap-2">
+                                                        <ArrowRight className="w-4 h-4 text-blue-300 mt-0.5" />
+                                                        <span>Problem → Comments (1:N)</span>
+                                                    </div>
+                                                    <div className="flex items-start gap-2">
+                                                        <ArrowRight className="w-4 h-4 text-rose-300 mt-0.5" />
+                                                        <span>Problem → VideoSolutions (1:N)</span>
+                                                    </div>
+                                                    <div className="flex items-start gap-2">
+                                                        <ArrowRight className="w-4 h-4 text-purple-300 mt-0.5" />
+                                                        <span>User → Bookmarks (1:N)</span>
+                                                    </div>
+                                                    <div className="flex items-start gap-2">
+                                                        <ArrowRight className="w-4 h-4 text-cyan-300 mt-0.5" />
+                                                        <span>Comment → Replies (1:N)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Indexes Section */}
+                                            <div className="mt-4 bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                <h4 className="text-sm font-semibold text-cyan-300 mb-2">Key Indexes</h4>
+                                                <ul className="text-xs text-gray-400 space-y-2 font-mono">
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-cyan-300">•</span>
+                                                        <span>solutionSchema.index({`{ problemId: 1, userId: 1 }`})</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-cyan-300">•</span>
+                                                        <span>noteSchema.index({`{ userId: 1, problemId: 1, {unique: true } }`})`</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-cyan-300">•</span>
+                                                        <span>videoSolutionSchema.index({`{ title: 'text', description: 'text' }`})</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-cyan-500/20 p-3 rounded-lg border border-cyan-500/30">
+                                            <Network className="w-6 h-6 text-cyan-400" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-white mb-2">Real-time System</h3>
+                                            <p className="text-gray-400 mb-3">
+                                                Socket.IO implementation for collaborative features with Redis pub/sub.
+                                            </p>
+
+                                            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-cyan-300 mb-2">Events Handled</h4>
+                                                    <ul className="text-xs text-gray-400 space-y-2 font-mono">
+                                                        <li className="flex gap-2">
+                                                            <span className="text-cyan-300">•</span>
+                                                            <span>CODE_UPDATE: {`{roomId, changes}`}</span>
+                                                        </li>
+                                                        <li className="flex gap-2">
+                                                            <span className="text-cyan-300">•</span>
+                                                            <span>USER_JOIN: {`{userId, username}`}</span>
+                                                        </li>
+                                                        <li className="flex gap-2">
+                                                            <span className="text-cyan-300">•</span>
+                                                            <span>SUBMISSION_RESULT: {`{problemId, result}`}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-cyan-300 mb-2">Scaling Strategy</h4>
+                                                    <ul className="text-sm text-gray-400 space-y-2">
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-cyan-300">•</span>
+                                                            <span>Redis adapter for multi-server sync</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-cyan-300">•</span>
+                                                            <span>Room-based connection groups</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-cyan-300">•</span>
+                                                            <span>100ms debounce for code updates</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-rose-500/20 p-3 rounded-lg border border-rose-500/30">
+                                            <AlertTriangle className="w-6 h-6 text-rose-400" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-white mb-2">Error Management</h3>
+
+                                            <div className="mt-4 space-y-4">
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-rose-300 mb-2">Error Classes</h4>
+                                                    <pre className="text-xs text-gray-400 overflow-x-auto">
+                                                        {`class APIError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.isOperational = true;
+  }
+}
+
+class ValidationError extends APIError { /* 400 */ }
+class AuthError extends APIError { /* 401 */ }
+class ForbiddenError extends APIError { /* 403 */ }
+class NotFoundError extends APIError { /* 404 */ }`}
+                                                    </pre>
+                                                </div>
+
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-rose-300 mb-2">Handling Flow</h4>
+                                                    <ol className="text-sm text-gray-400 space-y-2">
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-rose-300">1.</span>
+                                                            <span>Route handler throws domain-specific error</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-rose-300">2.</span>
+                                                            <span>Error middleware processes and formats</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-rose-300">3.</span>
+                                                            <span>Logging system captures details</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-rose-300">4.</span>
+                                                            <span>Structured response sent to client</span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div variants={itemVariants} className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-violet-500/20 p-3 rounded-lg border border-violet-500/30">
+                                            <Zap className="w-6 h-6 text-violet-400" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-white mb-2">Performance Tactics</h3>
+
+                                            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-violet-300 mb-2">Caching Layer</h4>
+                                                    <ul className="text-sm text-gray-400 space-y-2">
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-violet-300">•</span>
+                                                            <span>Redis cache for problem metadata</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-violet-300">•</span>
+                                                            <span>30s TTL for leaderboard data</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-violet-300">•</span>
+                                                            <span>Cache stampede protection</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                    <h4 className="text-sm font-semibold text-violet-300 mb-2">Query Optimization</h4>
+                                                    <ul className="text-sm text-gray-400 space-y-2">
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-violet-300">•</span>
+                                                            <span>Selective field projection</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-violet-300">•</span>
+                                                            <span>Compound indexes for common queries</span>
+                                                        </li>
+                                                        <li className="flex items-start gap-2">
+                                                            <span className="text-violet-300">•</span>
+                                                            <span>Batch operations for submissions</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+
+
                             </motion.div>
                         </div>
                     </Section>
 
+                    <Section id="challenges" title="Engineering Challenges & Solutions" icon={<Shield />}>
+                        <div className="space-y-8">
+                            <div className="prose prose-invert max-w-none">
+                                <p className="text-lg text-gray-300">
+                                    Building a platform as complex as CodeHunter presented numerous technical challenges. Here's how our engineering team addressed the most critical ones:
+                                </p>
+                            </div>
+
+                            <motion.div className="space-y-6" variants={staggerContainer}>
+                                <motion.div
+                                    variants={itemVariants}
+                                    className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm"
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-red-500/20 p-3 rounded-lg border border-red-500/30">
+                                            <Shield className="w-6 h-6 text-red-400" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-white mb-2">Secure Code Execution</h3>
+                                            <p className="text-gray-400 mb-3">
+                                                Running untrusted user code in a safe, isolated environment while maintaining performance.
+                                            </p>
+                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Solution Architecture</h4>
+                                                <ul className="space-y-2 text-sm text-gray-400">
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Implemented Judge0 as execution engine with strict resource limits</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Docker containers with read-only filesystems for each execution</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Network isolation to prevent external calls</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Timeout enforcement (5s max execution time)</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    variants={itemVariants}
+                                    className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm"
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-blue-500/20 p-3 rounded-lg border border-blue-500/30">
+                                            <Users className="w-6 h-6 text-blue-400" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-white mb-2">Real-time Collaboration</h3>
+                                            <p className="text-gray-400 mb-3">
+                                                Supporting concurrent users in coding rooms with live updates and synchronization.
+                                            </p>
+                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Implementation Strategy</h4>
+                                                <ul className="space-y-2 text-sm text-gray-400">
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Socket.IO with Redis adapter for horizontal scaling</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Operational transform for conflict resolution in code edits</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Throttled updates (100ms debounce) to prevent flooding</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Client-side prediction for smooth UI updates</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    variants={itemVariants}
+                                    className="bg-gradient-to-br from-gray-900/70 to-gray-900/40 p-6 rounded-xl border border-white/10 backdrop-blur-sm"
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-green-500/20 p-3 rounded-lg border border-green-500/30">
+                                            <BrainCircuit className="w-6 h-6 text-green-400" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-semibold text-white mb-2">AI Context Management</h3>
+                                            <p className="text-gray-400 mb-3">
+                                                Maintaining conversation context across multiple problems and coding sessions.
+                                            </p>
+                                            <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                                                <h4 className="text-sm font-semibold text-purple-300 mb-2">Technical Approach</h4>
+                                                <ul className="space-y-2 text-sm text-gray-400">
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Vector embeddings of problem statements for semantic search</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Conversation trees stored in MongoDB with TTL indexes</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Custom prompt engineering to maintain teaching methodology</span>
+                                                    </li>
+                                                    <li className="flex items-start gap-2">
+                                                        <span className="text-purple-300">•</span>
+                                                        <span>Rate limiting to prevent API abuse</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        </div>
+                    </Section>
+
+
+
+
                 </motion.div>
 
-                {/* Footer */}
-                {/* <footer className="mt-32 pt-12 border-t border-gray-800/50 text-center">
-                    <div className="mb-8">
-                        <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 mb-4">
-                            Ready to Transform Your Coding Journey?
-                        </h3>
-                        <p className="text-gray-400 max-w-2xl mx-auto">
-                            Join thousands of developers who've accelerated their interview preparation with CodeHunter's comprehensive platform.
-                        </p>
-                    </div>
-                    <div className="flex justify-center gap-4 mb-12">
-                        <motion.a
-                            href="https://code-hunter-sable.vercel.app/"
-                            className="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg font-medium text-white shadow-lg hover:shadow-purple-500/30 transition-all"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Get Started
-                        </motion.a>
-                        <motion.a
-                            href="#"
-                            className="px-8 py-3 bg-gray-800 rounded-lg font-medium text-white border border-gray-700 hover:bg-gray-700/50 transition-all"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Contact Sales
-                        </motion.a>
-                    </div>
-                    <p className="text-gray-500 text-sm">
-                        © {new Date().getFullYear()} CodeHunter. All rights reserved.
-                    </p>
-                </footer> */}
+
 
             </main>
             <Footer />
