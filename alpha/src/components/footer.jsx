@@ -76,7 +76,7 @@ export default function Footer() {
                         className="space-y-6"
                     >
                         <h1 className="text-4xl font-bold font-rocksalt">
-                            Code Hunter
+                            <a href="https://code-hunter-sable.vercel.app/">Code Hunter</a>
                         </h1>
                         <p className="text-lg text-gray-300 leading-relaxed">
                             Where logic meets ambition, and coders become champions — Crack
