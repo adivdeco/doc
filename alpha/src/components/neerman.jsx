@@ -6,7 +6,7 @@ const NeermanDocumentation = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ['overview', 'features', 'use-cases', 'tech-stack', 'future-upgrades', 'api-docs'];
+            const sections = ['overview', 'user-roles', 'features', 'use-cases', 'tech-stack', 'future-upgrades', 'api-docs', 'architecture'];
             const current = sections.find(section => {
                 const element = document.getElementById(section);
                 if (element) {
@@ -35,161 +35,309 @@ const NeermanDocumentation = () => {
         }
     };
 
+    // User Roles Data
+    const userRoles = [
+        {
+            role: 'Admin',
+            icon: '👑',
+            description: 'Full system control and management capabilities',
+            permissions: [
+                'User management and role assignments',
+                'System configuration and settings',
+                'Financial reporting and analytics',
+                'Employee and contractor oversight',
+                'Data backup and security management'
+            ]
+        },
+        {
+            role: 'Co-admin/Employees',
+            icon: '👥',
+            description: 'Operational management and user support',
+            permissions: [
+                'Manage user data and profiles',
+                'Track and monitor service requests',
+                'Update user information and status',
+                'Customer support and issue resolution',
+                'Service request assignment and follow-up'
+            ]
+        },
+        {
+            role: 'Contractors',
+            icon: '🔧',
+            description: 'Service providers with profession-based accounts',
+            permissions: [
+                'Receive and manage service requests',
+                'Accept or cancel user requests',
+                'Update service status and progress',
+                'Professional profile management',
+                'Real-time communication with users'
+            ]
+        },
+        {
+            role: 'Shop Owners',
+            icon: '🏪',
+            description: 'Hardware goods suppliers with ledger management',
+            permissions: [
+                'Manage product inventory and listings',
+                'Process customer orders and deliveries',
+                'Maintain daily shop billing ledger',
+                'Generate and manage invoices',
+                'Customer relationship management'
+            ]
+        },
+        {
+            role: 'Users/Customers',
+            icon: '👤',
+            description: 'Primary service consumers for construction and repair needs',
+            permissions: [
+                'Register and manage personal profile',
+                'Request services from contractors',
+                'Purchase materials from shop owners',
+                'Track service progress and history',
+                'Access AI-powered planning tools'
+            ]
+        }
+    ];
+
+    // Enhanced Features with role-specific functionality
     const features = [
         {
             icon: '🔍',
-            title: 'Smart Analytics',
-            description: 'Comprehensive data analysis with intuitive visualizations to help you make informed decisions based on real-time metrics and trends.'
+            title: 'Smart Analytics & Dashboard',
+            description: 'Comprehensive data analysis with role-specific dashboards. Real-time metrics and business intelligence for informed decision-making.',
+            roles: ['All Roles']
         },
         {
             icon: '🤖',
-            title: 'Automated Workflows',
-            description: 'Create custom automation sequences to eliminate repetitive tasks and streamline your business processes with our drag-and-drop workflow builder.'
+            title: 'AI-Powered Estimation',
+            description: 'Intelligent house cost estimation based on property data. Machine learning algorithms provide accurate budget planning for construction projects.',
+            roles: ['Users', 'Contractors']
         },
         {
             icon: '🔒',
-            title: 'Secure Collaboration',
-            description: 'Enterprise-grade security with role-based access controls, ensuring your data remains protected while enabling seamless team collaboration.'
+            title: 'Role-Based Access Control',
+            description: 'Enterprise-grade security with hierarchical permissions. Each user role has tailored access and capabilities within the system.',
+            roles: ['All Roles']
         },
         {
             icon: '📊',
-            title: 'Custom Reporting',
-            description: 'Generate tailored reports with our flexible reporting engine, allowing you to focus on the metrics that matter most to your business.'
+            title: 'Ledger Management',
+            description: 'Advanced billing and ledger system for shop owners. Structured data management for daily transactions and financial tracking.',
+            roles: ['Shop Owners', 'Admin']
         },
         {
-            icon: '📱',
-            title: 'Mobile Experience',
-            description: 'Full-featured mobile application with offline capabilities, ensuring you stay productive even when disconnected from the internet.'
+            icon: '⚡',
+            title: 'Real-time Communication',
+            description: 'Socket.io powered instant messaging and notifications. Seamless communication between all stakeholders without time delays.',
+            roles: ['All Roles']
         },
         {
-            icon: '🔗',
-            title: 'Integration Hub',
-            description: 'Connect Neerman with your existing tools through our extensive library of pre-built integrations and customizable API endpoints.'
+            icon: '🛒',
+            title: 'Multi-vendor Marketplace',
+            description: 'Integrated platform connecting users with contractors and shop owners. Streamlined service requests and material procurement.',
+            roles: ['Users', 'Contractors', 'Shop Owners']
         }
     ];
 
+    // Enhanced Business Use Cases
     const businessUseCases = [
         {
-            title: 'Project Management',
-            description: 'Coordinate teams, track progress, and manage resources efficiently with our project management module. Assign tasks, set deadlines, and monitor project health in real-time.'
+            title: 'Project Management & Coordination',
+            description: 'Comprehensive project tracking from initiation to completion. Real-time updates, resource allocation, and milestone tracking for construction projects.',
+            image: '📋'
         },
         {
             title: 'Customer Relationship Management',
-            description: 'Track customer interactions, manage sales pipelines, and automate follow-up communications to improve customer satisfaction and increase conversion rates.'
+            description: 'End-to-end customer journey management. Track interactions, manage service pipelines, and automate follow-up communications.',
+            image: '💼'
         },
         {
-            title: 'Inventory Management',
-            description: 'Monitor stock levels, track inventory movement, and generate automated reorder alerts to optimize inventory costs and prevent stockouts.'
+            title: 'Inventory & Ledger Management',
+            description: 'Advanced inventory tracking with integrated ledger system. Shop owners maintain daily billing lists and structured financial data.',
+            image: '📦'
         },
         {
-            title: 'Financial Reporting',
-            description: 'Consolidate financial data from multiple sources, generate compliance reports, and visualize financial performance with customizable dashboards.'
+            title: 'Service Request Ecosystem',
+            description: 'Streamlined service request flow from users to contractors. Real-time assignment, tracking, and completion with employee oversight.',
+            image: '🔄'
         }
     ];
 
+    // Enhanced Individual Use Cases
     const individualUseCases = [
         {
-            title: 'Personal Productivity',
-            description: 'Organize daily tasks, set reminders, and track personal goals with our intuitive task management system designed for individual users.'
+            title: 'Home Construction Planning',
+            description: 'Complete home construction journey management. From initial planning with AI tools to contractor selection and material procurement.',
+            image: '🏠'
         },
         {
-            title: 'Learning Management',
-            description: 'Create personalized learning paths, track progress, and receive recommendations for skill development based on your career objectives.'
+            title: 'AI-Powered Cost Estimation',
+            description: 'Smart budget planning using property data and machine learning. Get accurate construction cost estimates before starting projects.',
+            image: '🤖'
         },
         {
-            title: 'Health & Wellness Tracking',
-            description: 'Monitor fitness goals, track nutrition, and establish healthy habits with our wellness module that integrates with popular health apps and devices.'
+            title: 'Service Marketplace Access',
+            description: 'One-stop platform for all construction and repair needs. Connect with verified contractors and purchase materials seamlessly.',
+            image: '🛍️'
         }
     ];
 
+    // Enhanced Tech Stack from your package.json
     const techStack = {
-        frontend: ['React.js', 'TypeScript', 'Redux', 'Material-UI', 'Chart.js'],
-        backend: ['Node.js', 'Express.js', 'MongoDB', 'Redis', 'Socket.io'],
-        infrastructure: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'Terraform']
+        frontend: {
+            framework: ['React 19.1.1', 'React DOM 19.1.1'],
+            stateManagement: ['Redux Toolkit', 'React Redux'],
+            ui: ['Tailwind CSS 4.1.14', 'Material-UI', 'Heroicons', 'Lucide React'],
+            forms: ['React Hook Form', 'Zod Validation'],
+            routing: ['React Router 7.9.4'],
+            realtime: ['Socket.io Client 4.8.1'],
+            utilities: ['Axios', 'Date-fns', 'Framer Motion', 'React Hot Toast']
+        },
+        backend: {
+            runtime: ['Node.js', 'Express.js 5.1.0'],
+            database: ['MongoDB', 'Mongoose 8.18.1'],
+            authentication: ['JWT', 'bcrypt', 'Firebase Admin'],
+            fileStorage: ['Cloudinary', 'Multer'],
+            realtime: ['Socket.io 4.8.1'],
+            ai: ['Google GenAI'],
+            utilities: ['Node-cron', 'Validator']
+        },
+        infrastructure: {
+            deployment: ['Vite 7.1.7', 'Docker'],
+            monitoring: ['ESLint', 'Nodemon'],
+            apis: ['RESTful APIs', 'WebSocket APIs']
+        }
+    };
+
+    // System Architecture
+    const architecture = {
+        components: [
+            {
+                name: 'Frontend Layer',
+                description: 'React-based responsive web application',
+                technologies: ['React 19', 'Redux', 'Tailwind CSS', 'Socket.io Client']
+            },
+            {
+                name: 'Backend API Layer',
+                description: 'Express.js server with RESTful and WebSocket APIs',
+                technologies: ['Node.js', 'Express 5', 'JWT Auth', 'Socket.io']
+            },
+            {
+                name: 'Database Layer',
+                description: 'MongoDB with Mongoose ODM for data persistence',
+                technologies: ['MongoDB', 'Mongoose', 'Data Validation']
+            },
+            {
+                name: 'AI Service Layer',
+                description: 'Google GenAI integration for intelligent features',
+                technologies: ['Google GenAI', 'Machine Learning']
+            },
+            {
+                name: 'File Storage',
+                description: 'Cloudinary integration for media management',
+                technologies: ['Cloudinary', 'Multer']
+            }
+        ],
+        features: [
+            'Real-time communication via WebSockets',
+            'Role-based access control system',
+            'AI-powered estimation engine',
+            'Multi-vendor marketplace platform',
+            'Advanced ledger management system'
+        ]
+    };
+
+    // API Routes Structure
+    const apiRoutes = {
+        authentication: ['POST /auth/login', 'POST /auth/register', 'POST /auth/refresh', 'POST /auth/logout'],
+        userManagement: [
+            'GET /admin/user/allusers',
+            'PUT /setting/user',
+            'PUT /setting/shop',
+            'PUT /setting/contractor'
+        ],
+        businessOperations: [
+            'POST /shop/addBill',
+            'GET /shop/allBills',
+            'GET /shop/allCustomers',
+            'POST /khata (Ledger operations)'
+        ],
+        serviceManagement: [
+            'POST /api/work-requests',
+            'GET /api/work-requests',
+            'PUT /api/work-requests/:id'
+        ],
+        aiServices: [
+            'POST /ai-build/estimate',
+            'POST /ai-build/layout'
+        ],
+        notifications: [
+            'GET /api/notifications',
+            'POST /api/notifications',
+            'PUT /api/notifications/:id'
+        ]
     };
 
     const roadmap = [
         {
-            quarter: 'Q3 2023',
-            title: 'AI-Powered Insights',
-            description: 'Implement machine learning algorithms to provide predictive analytics and intelligent recommendations based on user behavior and historical data.'
-        },
-        {
-            quarter: 'Q4 2023',
-            title: 'Advanced Automation',
-            description: 'Introduce natural language processing for creating automation workflows and expand integration capabilities with 50+ additional third-party services.'
-        },
-        {
             quarter: 'Q1 2024',
-            title: 'Mobile Enhancements',
-            description: 'Redesign mobile application with enhanced offline capabilities, AR features for inventory management, and improved performance.'
+            title: 'Advanced AI Layout Design',
+            description: 'Implement AI system for automated home layout generation and 3D visualization with intelligent space planning algorithms.'
         },
         {
             quarter: 'Q2 2024',
-            title: 'Enterprise Features',
-            description: 'Add advanced security features, compliance modules for various industries, and enhanced administrative controls for large organizations.'
+            title: 'Integrated Payment Gateway',
+            description: 'Introduce online payment processing for service requests, material purchases, and automated transaction handling.'
         },
         {
             quarter: 'Q3 2024',
-            title: 'Global Expansion',
-            description: 'Introduce multi-language support, regional compliance features, and localized user experiences for international markets.'
-        }
-    ];
-
-    const apiEndpoints = [
-        {
-            category: 'Authentication',
-            endpoints: [
-                'POST /api/auth/login - User authentication',
-                'POST /api/auth/refresh - Refresh access token'
-            ]
+            title: 'Smart Bill Generation & Distribution',
+            description: 'Enable shop owners to generate comprehensive bills and automatically send them via WhatsApp, email, and other channels.'
         },
         {
-            category: 'User Management',
-            endpoints: [
-                'GET /api/users - Retrieve user list',
-                'POST /api/users - Create new user',
-                'PUT /api/users/{id} - Update user information'
-            ]
+            quarter: 'Q4 2024',
+            title: 'Mobile Application Suite',
+            description: 'Launch dedicated mobile applications for all user roles with enhanced offline capabilities and push notifications.'
         },
         {
-            category: 'Data Operations',
-            endpoints: [
-                'GET /api/data - Retrieve data with filtering options',
-                'POST /api/data - Create new data records',
-                'PUT /api/data/{id} - Update existing records'
-            ]
-        },
-        {
-            category: 'Reports',
-            endpoints: [
-                'GET /api/reports - Generate custom reports',
-                'POST /api/reports - Create new report templates'
-            ]
+            quarter: 'Q1 2025',
+            title: 'International Expansion',
+            description: 'Multi-language support, regional compliance features, and localized experiences for global markets.'
         }
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <header className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-12 shadow-lg">
-                <div className="container mx-auto px-4 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Neerman</h1>
-                    <p className="text-xl md:text-2xl opacity-90">Intelligent Solutions for Modern Challenges</p>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+            {/* Enhanced Header */}
+            <header className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-black opacity-10"></div>
+                <div className="container mx-auto px-4 text-center relative z-10">
+                    <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                        Neerman
+                    </h1>
+                    <p className="text-xl md:text-2xl opacity-90 mb-4">Intelligent Construction & Service Management Platform</p>
+                    <p className="text-lg opacity-80 max-w-2xl mx-auto">
+                        Connecting homeowners with contractors and suppliers through AI-powered solutions and real-time communication.
+                    </p>
                 </div>
             </header>
 
-            {/* Navigation */}
-            <nav className="bg-white shadow-md sticky top-0 z-50">
-                <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                    <div className="text-blue-900 font-bold text-xl">Neerman</div>
+            {/* Enhanced Navigation */}
+            <nav className="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200">
+                <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                            N
+                        </div>
+                        <span className="text-blue-900 font-bold text-xl">Neerman</span>
+                    </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden text-gray-700 focus:outline-none"
+                        className="md:hidden text-gray-700 focus:outline-none transition-transform duration-300 hover:scale-110"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             {isMenuOpen ? (
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             ) : (
@@ -199,15 +347,17 @@ const NeermanDocumentation = () => {
                     </button>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex space-x-8">
-                        {['overview', 'features', 'use-cases', 'tech-stack', 'future-upgrades', 'api-docs'].map((section) => (
+                    <div className="hidden md:flex space-x-6">
+                        {['overview', 'user-roles', 'features', 'use-cases', 'architecture', 'tech-stack', 'future-upgrades', 'api-docs'].map((section) => (
                             <button
                                 key={section}
                                 onClick={() => scrollToSection(section)}
-                                className={`capitalize font-medium transition-colors ${activeSection === section ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+                                className={`capitalize font-medium transition-all duration-300 px-3 py-2 rounded-lg ${activeSection === section
+                                        ? 'text-blue-600 bg-blue-50 shadow-sm'
+                                        : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                                     }`}
                             >
-                                {section.replace('-', ' ')}
+                                {section.replace(/-/g, ' ')}
                             </button>
                         ))}
                     </div>
@@ -215,18 +365,18 @@ const NeermanDocumentation = () => {
 
                 {/* Mobile Navigation */}
                 {isMenuOpen && (
-                    <div className="md:hidden bg-white py-4 px-4 shadow-lg">
-                        <div className="flex flex-col space-y-4">
-                            {['overview', 'features', 'use-cases', 'tech-stack', 'future-upgrades', 'api-docs'].map((section) => (
+                    <div className="md:hidden bg-white/95 backdrop-blur-md py-4 px-4 shadow-lg border-t border-gray-200">
+                        <div className="flex flex-col space-y-2">
+                            {['overview', 'user-roles', 'features', 'use-cases', 'architecture', 'tech-stack', 'future-upgrades', 'api-docs'].map((section) => (
                                 <button
                                     key={section}
                                     onClick={() => scrollToSection(section)}
-                                    className={`capitalize font-medium text-left py-2 px-4 rounded transition-colors ${activeSection === section
-                                            ? 'bg-blue-100 text-blue-700'
+                                    className={`capitalize font-medium text-left py-3 px-4 rounded-lg transition-all duration-300 ${activeSection === section
+                                            ? 'bg-blue-100 text-blue-700 shadow-sm'
                                             : 'text-gray-700 hover:bg-gray-100'
                                         }`}
                                 >
-                                    {section.replace('-', ' ')}
+                                    {section.replace(/-/g, ' ')}
                                 </button>
                             ))}
                         </div>
@@ -235,64 +385,147 @@ const NeermanDocumentation = () => {
             </nav>
 
             {/* Main Content */}
-            <main>
+            <main className="relative">
                 {/* Overview Section */}
-                <section id="overview" className="py-16">
+                <section id="overview" className="py-20">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Project Overview</h2>
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Platform Overview</h2>
 
-                        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-                            <div className="mb-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                            <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500">
                                 <h3 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                                    <span className="text-2xl mr-3">📱</span>
-                                    About Neerman
+                                    <span className="text-3xl mr-4">🚀</span>
+                                    Revolutionary Platform Concept
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    Neerman is an innovative application designed to streamline workflow processes and enhance productivity
-                                    through intelligent automation and data-driven insights. Our platform combines cutting-edge technology
-                                    with user-centric design to deliver exceptional value to businesses and individuals alike.
+                                <p className="text-gray-600 leading-relaxed text-lg">
+                                    Neerman transforms the construction and home services industry by creating a seamless ecosystem
+                                    connecting homeowners with verified contractors and material suppliers. Our AI-powered platform
+                                    simplifies every step from planning to completion.
                                 </p>
                             </div>
 
-                            <div className="mb-8">
+                            <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500">
                                 <h3 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                                    <span className="text-2xl mr-3">🎯</span>
-                                    Mission Statement
+                                    <span className="text-3xl mr-4">🎯</span>
+                                    Core Mission
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    To empower organizations with intuitive tools that simplify complex tasks, foster collaboration,
-                                    and drive measurable results through data-informed decision making.
+                                <p className="text-gray-600 leading-relaxed text-lg">
+                                    To democratize access to quality construction services and materials through technology,
+                                    making home construction and repairs transparent, efficient, and accessible to everyone.
                                 </p>
                             </div>
+                        </div>
 
-                            <div>
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                                    <span className="text-2xl mr-3">👥</span>
-                                    Target Audience
-                                </h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    Small to medium businesses, project managers, teams requiring workflow automation,
-                                    and professionals seeking productivity enhancement tools.
-                                </p>
+                        {/* Platform Statistics */}
+                        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-2xl p-8 text-white">
+                            <h3 className="text-2xl font-semibold mb-8 text-center">Platform Impact</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                                <div>
+                                    <div className="text-3xl font-bold mb-2">5+</div>
+                                    <div className="text-blue-200">User Roles</div>
+                                </div>
+                                <div>
+                                    <div className="text-3xl font-bold mb-2">100%</div>
+                                    <div className="text-blue-200">Real-time</div>
+                                </div>
+                                <div>
+                                    <div className="text-3xl font-bold mb-2">AI</div>
+                                    <div className="text-blue-200">Powered</div>
+                                </div>
+                                <div>
+                                    <div className="text-3xl font-bold mb-2">24/7</div>
+                                    <div className="text-blue-200">Support</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* User Roles Section */}
+                <section id="user-roles" className="py-20 bg-white">
+                    <div className="container mx-auto px-4">
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Comprehensive User Role System</h2>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {userRoles.map((role, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-200"
+                                >
+                                    <div className="flex items-center mb-4">
+                                        <span className="text-3xl mr-4">{role.icon}</span>
+                                        <h3 className="text-xl font-bold text-gray-800">{role.role}</h3>
+                                    </div>
+                                    <p className="text-gray-600 mb-4 leading-relaxed">{role.description}</p>
+                                    <div className="space-y-2">
+                                        {role.permissions.map((permission, idx) => (
+                                            <div key={idx} className="flex items-start">
+                                                <span className="text-green-500 mr-2 mt-1">✓</span>
+                                                <span className="text-gray-700 text-sm">{permission}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Role Interaction Diagram */}
+                        <div className="mt-16 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg p-8">
+                            <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">Role Interaction Flow</h3>
+                            <div className="flex flex-wrap justify-center items-center gap-4">
+                                <div className="bg-white rounded-xl p-4 shadow-md text-center min-w-[120px]">
+                                    <div className="text-2xl mb-2">👤</div>
+                                    <div className="font-semibold text-sm">User</div>
+                                </div>
+                                <div className="text-2xl">→</div>
+                                <div className="bg-white rounded-xl p-4 shadow-md text-center min-w-[120px]">
+                                    <div className="text-2xl mb-2">🔧</div>
+                                    <div className="font-semibold text-sm">Contractor</div>
+                                </div>
+                                <div className="text-2xl">→</div>
+                                <div className="bg-white rounded-xl p-4 shadow-md text-center min-w-[120px]">
+                                    <div className="text-2xl mb-2">🏪</div>
+                                    <div className="font-semibold text-sm">Shop Owner</div>
+                                </div>
+                                <div className="text-2xl">→</div>
+                                <div className="bg-white rounded-xl p-4 shadow-md text-center min-w-[120px]">
+                                    <div className="text-2xl mb-2">👥</div>
+                                    <div className="font-semibold text-sm">Employee</div>
+                                </div>
+                                <div className="text-2xl">→</div>
+                                <div className="bg-white rounded-xl p-4 shadow-md text-center min-w-[120px]">
+                                    <div className="text-2xl mb-2">👑</div>
+                                    <div className="font-semibold text-sm">Admin</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Features Section */}
-                <section id="features" className="py-16 bg-white">
+                <section id="features" className="py-20">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Core Features</h2>
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Advanced Platform Features</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {features.map((feature, index) => (
                                 <div
                                     key={index}
-                                    className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                                    className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-gray-200"
                                 >
-                                    <div className="text-3xl mb-4">{feature.icon}</div>
-                                    <h3 className="text-xl font-semibold text-gray-800 mb-3">{feature.title}</h3>
-                                    <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                                    <div className="text-4xl mb-4">{feature.icon}</div>
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed mb-4">{feature.description}</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {feature.roles.map((role, idx) => (
+                                            <span
+                                                key={idx}
+                                                className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-medium"
+                                            >
+                                                {role}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -300,37 +533,53 @@ const NeermanDocumentation = () => {
                 </section>
 
                 {/* Use Cases Section */}
-                <section id="use-cases" className="py-16">
+                <section id="use-cases" className="py-20 bg-white">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Use Cases</h2>
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Real-World Applications</h2>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                             {/* Business Use Cases */}
-                            <div className="bg-white rounded-xl shadow-lg p-8">
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-                                    <span className="text-2xl mr-3">🏢</span>
-                                    Business Applications
+                            <div className="space-y-6">
+                                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                    <span className="text-3xl mr-4">🏢</span>
+                                    Business & Enterprise Solutions
                                 </h3>
 
                                 {businessUseCases.map((useCase, index) => (
-                                    <div key={index} className="mb-6 last:mb-0 border-l-4 border-blue-500 pl-4">
-                                        <h4 className="text-lg font-semibold text-gray-800 mb-2">{useCase.title}</h4>
-                                        <p className="text-gray-600 leading-relaxed">{useCase.description}</p>
+                                    <div
+                                        key={index}
+                                        className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
+                                    >
+                                        <div className="flex items-start space-x-4">
+                                            <span className="text-3xl">{useCase.image}</span>
+                                            <div>
+                                                <h4 className="text-lg font-semibold text-gray-800 mb-2">{useCase.title}</h4>
+                                                <p className="text-gray-600 leading-relaxed">{useCase.description}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
 
                             {/* Individual Use Cases */}
-                            <div className="bg-white rounded-xl shadow-lg p-8">
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-                                    <span className="text-2xl mr-3">👤</span>
-                                    Individual Use Cases
+                            <div className="space-y-6">
+                                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                    <span className="text-3xl mr-4">👤</span>
+                                    Individual & Consumer Solutions
                                 </h3>
 
                                 {individualUseCases.map((useCase, index) => (
-                                    <div key={index} className="mb-6 last:mb-0 border-l-4 border-green-500 pl-4">
-                                        <h4 className="text-lg font-semibold text-gray-800 mb-2">{useCase.title}</h4>
-                                        <p className="text-gray-600 leading-relaxed">{useCase.description}</p>
+                                    <div
+                                        key={index}
+                                        className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300"
+                                    >
+                                        <div className="flex items-start space-x-4">
+                                            <span className="text-3xl">{useCase.image}</span>
+                                            <div>
+                                                <h4 className="text-lg font-semibold text-gray-800 mb-2">{useCase.title}</h4>
+                                                <p className="text-gray-600 leading-relaxed">{useCase.description}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -338,59 +587,101 @@ const NeermanDocumentation = () => {
                     </div>
                 </section>
 
-                {/* Tech Stack Section */}
-                <section id="tech-stack" className="py-16 bg-white">
+                {/* Architecture Section */}
+                <section id="architecture" className="py-20">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Technology Stack</h2>
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">System Architecture</h2>
 
-                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl shadow-lg p-8">
-                            <div className="mb-8">
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-                                    <span className="text-2xl mr-3">💻</span>
-                                    Frontend
+                        <div className="bg-white rounded-2xl shadow-xl p-8 mb-12">
+                            <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Layered Architecture Overview</h3>
+
+                            <div className="space-y-8">
+                                {architecture.components.map((component, index) => (
+                                    <div key={index} className="border-l-4 border-blue-500 pl-6 py-2">
+                                        <h4 className="text-xl font-semibold text-gray-800 mb-2">{component.name}</h4>
+                                        <p className="text-gray-600 mb-3">{component.description}</p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {component.technologies.map((tech, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Key Features */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {architecture.features.map((feature, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300"
+                                >
+                                    <div className="text-2xl mb-3">⭐</div>
+                                    <h4 className="font-semibold text-gray-800">{feature}</h4>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Tech Stack Section */}
+                <section id="tech-stack" className="py-20 bg-white">
+                    <div className="container mx-auto px-4">
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Technology Stack</h2>
+
+                        <div className="space-y-12">
+                            {/* Frontend */}
+                            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl shadow-lg p-8">
+                                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                    <span className="text-3xl mr-4">💻</span>
+                                    Frontend Technologies
                                 </h3>
-                                <div className="flex flex-wrap gap-3">
-                                    {techStack.frontend.map((tech, index) => (
-                                        <span
-                                            key={index}
-                                            className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium"
-                                        >
-                                            {tech}
-                                        </span>
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                    {techStack.frontend.framework.map((tech, index) => (
+                                        <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="font-semibold text-gray-800">{tech}</div>
+                                        </div>
+                                    ))}
+                                    {techStack.frontend.stateManagement.map((tech, index) => (
+                                        <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="font-semibold text-gray-800">{tech}</div>
+                                        </div>
+                                    ))}
+                                    {techStack.frontend.ui.slice(0, 4).map((tech, index) => (
+                                        <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="font-semibold text-gray-800">{tech}</div>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="mb-8">
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-                                    <span className="text-2xl mr-3">⚙️</span>
-                                    Backend
+                            {/* Backend */}
+                            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-8">
+                                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                    <span className="text-3xl mr-4">⚙️</span>
+                                    Backend Technologies
                                 </h3>
-                                <div className="flex flex-wrap gap-3">
-                                    {techStack.backend.map((tech, index) => (
-                                        <span
-                                            key={index}
-                                            className="bg-green-100 text-green-800 px-4 py-2 rounded-full font-medium"
-                                        >
-                                            {tech}
-                                        </span>
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                    {techStack.backend.runtime.map((tech, index) => (
+                                        <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="font-semibold text-gray-800">{tech}</div>
+                                        </div>
                                     ))}
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-                                    <span className="text-2xl mr-3">☁️</span>
-                                    Infrastructure
-                                </h3>
-                                <div className="flex flex-wrap gap-3">
-                                    {techStack.infrastructure.map((tech, index) => (
-                                        <span
-                                            key={index}
-                                            className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-medium"
-                                        >
-                                            {tech}
-                                        </span>
+                                    {techStack.backend.database.map((tech, index) => (
+                                        <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="font-semibold text-gray-800">{tech}</div>
+                                        </div>
+                                    ))}
+                                    {techStack.backend.authentication.slice(0, 3).map((tech, index) => (
+                                        <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="font-semibold text-gray-800">{tech}</div>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -399,14 +690,14 @@ const NeermanDocumentation = () => {
                 </section>
 
                 {/* Future Upgrades Section */}
-                <section id="future-upgrades" className="py-16">
+                <section id="future-upgrades" className="py-20">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Future Upgrades & Roadmap</h2>
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Future Roadmap & Innovations</h2>
 
                         <div className="max-w-4xl mx-auto">
                             <div className="relative">
                                 {/* Timeline line */}
-                                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-blue-200"></div>
+                                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-400 to-purple-600"></div>
 
                                 {roadmap.map((item, index) => (
                                     <div
@@ -415,13 +706,13 @@ const NeermanDocumentation = () => {
                                             }`}
                                     >
                                         {/* Timeline dot */}
-                                        <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white z-10"></div>
+                                        <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full border-4 border-white z-10 shadow-lg"></div>
 
                                         {/* Content */}
                                         <div className={`ml-12 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                                            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                                                <div className="text-blue-600 font-semibold mb-2">{item.quarter}</div>
-                                                <h3 className="text-xl font-semibold text-gray-800 mb-3">{item.title}</h3>
+                                            <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-gray-200">
+                                                <div className="text-blue-600 font-bold text-lg mb-2">{item.quarter}</div>
+                                                <h3 className="text-xl font-bold text-gray-800 mb-3">{item.title}</h3>
                                                 <p className="text-gray-600 leading-relaxed">{item.description}</p>
                                             </div>
                                         </div>
@@ -433,26 +724,29 @@ const NeermanDocumentation = () => {
                 </section>
 
                 {/* API Documentation Section */}
-                <section id="api-docs" className="py-16 bg-white">
+                <section id="api-docs" className="py-20 bg-white">
                     <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">API Documentation</h2>
+                        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">API Documentation</h2>
 
-                        <div className="bg-gradient-to-br from-gray-50 to-indigo-50 rounded-xl shadow-lg p-8">
-                            <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-                                <span className="text-2xl mr-3">🔌</span>
-                                REST API Endpoints
+                        <div className="bg-gradient-to-br from-gray-50 to-indigo-50 rounded-2xl shadow-xl p-8">
+                            <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                                <span className="text-3xl mr-4">🔌</span>
+                                Comprehensive API Endpoints
                             </h3>
-                            <p className="text-gray-600 mb-8 leading-relaxed">
-                                Our comprehensive API allows developers to extend Neerman's functionality and integrate with existing systems.
+                            <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+                                Neerman provides a robust RESTful API with WebSocket support for real-time features.
+                                All endpoints are secured with JWT authentication and role-based access control.
                             </p>
 
                             <div className="space-y-8">
-                                {apiEndpoints.map((category, index) => (
-                                    <div key={index}>
-                                        <h4 className="text-lg font-semibold text-gray-800 mb-4">{category.category}</h4>
-                                        <div className="bg-white rounded-lg shadow-sm p-4 space-y-2">
-                                            {category.endpoints.map((endpoint, endIndex) => (
-                                                <div key={endIndex} className="font-mono text-sm bg-gray-100 p-3 rounded">
+                                {Object.entries(apiRoutes).map(([category, endpoints]) => (
+                                    <div key={category} className="bg-white rounded-xl shadow-sm p-6">
+                                        <h4 className="text-lg font-bold text-gray-800 mb-4 capitalize">
+                                            {category.replace(/([A-Z])/g, ' $1')}
+                                        </h4>
+                                        <div className="space-y-3">
+                                            {endpoints.map((endpoint, index) => (
+                                                <div key={index} className="font-mono text-sm bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500">
                                                     {endpoint}
                                                 </div>
                                             ))}
@@ -465,28 +759,39 @@ const NeermanDocumentation = () => {
                 </section>
             </main>
 
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-12">
+            {/* Enhanced Footer */}
+            <footer className="bg-gradient-to-br from-gray-900 to-blue-900 text-white py-16">
                 <div className="container mx-auto px-4">
                     <div className="text-center">
-                        <h2 className="text-2xl font-bold mb-4">Neerman</h2>
-                        <p className="text-gray-400 mb-6">Intelligent Solutions for Modern Challenges</p>
+                        <div className="flex justify-center items-center space-x-3 mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+                                N
+                            </div>
+                            <h2 className="text-3xl font-bold">Neerman</h2>
+                        </div>
+                        <p className="text-gray-300 mb-8 text-lg max-w-2xl mx-auto">
+                            Revolutionizing the construction and home services industry through technology,
+                            AI-powered solutions, and seamless user experiences.
+                        </p>
 
-                        <div className="flex flex-wrap justify-center gap-6 mb-6">
-                            {['overview', 'features', 'use-cases', 'tech-stack', 'future-upgrades'].map((section) => (
+                        <div className="flex flex-wrap justify-center gap-6 mb-8">
+                            {['overview', 'user-roles', 'features', 'use-cases', 'architecture', 'tech-stack', 'future-upgrades'].map((section) => (
                                 <button
                                     key={section}
                                     onClick={() => scrollToSection(section)}
-                                    className="text-gray-400 hover:text-white transition-colors capitalize"
+                                    className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 capitalize"
                                 >
-                                    {section.replace('-', ' ')}
+                                    {section.replace(/-/g, ' ')}
                                 </button>
                             ))}
                         </div>
 
-                        <p className="text-gray-500 text-sm">
-                            &copy; 2023 Neerman App. All rights reserved.
-                        </p>
+                        <div className="border-t border-gray-700 pt-8 mt-8">
+                            <p className="text-gray-400 text-sm">
+                                &copy; 2024 Neerman Platform. All rights reserved. |
+                                <span className="text-blue-300 ml-2">Built with React, Node.js, and AI Innovation</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </footer>
